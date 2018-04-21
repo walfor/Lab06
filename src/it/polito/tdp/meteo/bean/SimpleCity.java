@@ -1,9 +1,12 @@
 package it.polito.tdp.meteo.bean;
 
+import java.util.Date;
+
 public class SimpleCity {
 
 	private String nome;
 	private int costo;
+	
 	
 	public SimpleCity(String nome) {
 		this.nome = nome;
@@ -12,7 +15,22 @@ public class SimpleCity {
 	public SimpleCity(String nome, int costo) {
 		this.nome = nome;
 		this.costo = costo;
+		
 	}
+
+	
+
+	public SimpleCity(Citta c, int mese) {
+		this.nome=c.getNome();
+		for(Rilevamento r : c.getRilevamenti()) {
+			if(r.getData().getMonth()==mese) {
+				this.setCosto(r.getUmidita());
+			}
+		}
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
 	public String getNome() {
 		return nome;
@@ -57,7 +75,7 @@ public class SimpleCity {
 
 	@Override
 	public String toString() {
-		return nome;
+		return nome+" ";
 	}
 	
 }
